@@ -1,0 +1,16 @@
+.store{
+@extend .gray-box;
+
+    min-height: 130px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.store-logo{
+    width: 60px;
+    height: auto;
+}
