@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MainTemplate from './components/mainComponent/template/mainTemplate';
 import Home from './components/home/home';
 import Stores from "./components/stores/stores";
+import Signup from "./components/signup/signup";
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/stores' component={Stores}/>
+                        <Route exact path='/signup' component={Signup}/>
                     </Switch>
                 </MainTemplate>
             </BrowserRouter>

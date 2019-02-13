@@ -6,7 +6,7 @@ export default class Footer extends React.Component{
         return(
             <div className="footer text-center">
                 <p>© 2019 RetAPPs All rights reserved</p>
-                <p><a href="">Privacy</a></p>
+                <p>Privacy</p>
             </div>
         );
     }

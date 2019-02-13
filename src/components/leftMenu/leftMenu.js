@@ -1,7 +1,6 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
 import HomeMenu from "./homeMenu/homeMenu";
-import Stores from "../stores/stores";
 
 export default class LeftMenu extends React.Component{
 
