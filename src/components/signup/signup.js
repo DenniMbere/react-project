@@ -1,5 +1,5 @@
 import React from "react";
-import SignupService from "../../../src/components/service/signupService";
+import ProfileService from "../service/profileService";
 
 export default class Signup extends React.Component {
 
@@ -23,7 +23,7 @@ export default class Signup extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onCheck = this.onCheck.bind(this);
-        this.signupService = new SignupService();
+        this.signupService = new ProfileService();
     }
 
     onChange(e) {
@@ -160,7 +160,7 @@ export default class Signup extends React.Component {
                                     <div className="col-sm-11">
                                         <label>
                                             Dichiaro di aver letto e di accettare integralmente i termini e le condizioni di
-                                            servizio indicati nella informativa per la registrazione al servizio SmartBip.
+                                            servizio indicati nell'informativa per la registrazione al servizio SmartBip.
                                             In mancanza del mio consenso i servizi non potranno essere erogati.
                                         </label>
                                     </div>
@@ -182,7 +182,7 @@ export default class Signup extends React.Component {
                                 <div className="row">
                                     <div className="col-sm-11">
                                         <label>
-                                            Dichiaro di aver letto la Privacy Policy indicata nella informativa per la registrazione al servizio
+                                            Dichiaro di aver letto la Privacy Policy indicata nell'informativa per la registrazione al servizio
                                             SmartBip e di esprimere il mio consenso al trattamento dei miei dati per le finalità in essa indicate.<br/>
                                             In mancanza del mio consenso, i servizi non potranno essere erogati.
                                         </label>

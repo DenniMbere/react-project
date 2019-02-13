@@ -8,7 +8,7 @@ export default class MainTemplate extends React.Component{
         return(
             <div className="container">
                 <Header/>
-                <div className="row" style={{backgroundColor: "white", height: 1040}}>
+                <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
                     <div className="col-md-3 col-sm-3 nopadding left-side-menu">
                         <div>
                             <LeftMenu/>
