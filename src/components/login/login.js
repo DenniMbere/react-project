@@ -1,5 +1,6 @@
 import React from "react";
 import ProfileService from "../service/profileService";
+import {Redirect} from 'react-router-dom';
 
 export default class Login extends React.Component {
 
@@ -8,6 +9,7 @@ export default class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            redirect: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -20,12 +22,34 @@ export default class Login extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.signupService.login(
-            this.state.username,
-            this.state.password
-        )
+            this.state,
+            this.onSuccess.bind(this),
+            this.onError.bind(this)
+        );
     }
 
+    onSuccess(data) {
+        if(data) {
+            sessionStorage.setItem('user', JSON.stringify(data.data));
+            this.setState({redirect: true});
+        }
+    }
+
+    onError(data) {
+        console.log(data);
+    }
+
+
     render() {
+
+        if(this.state.redirect) {
+            return <Redirect to='/'/>
+        }
+
+        if(sessionStorage.getItem("user")) {
+            return <Redirect to='/'/>
+        }
+
         return (
             <div>
                 <form onSubmit={this.onSubmit.bind(this)}>

@@ -37,20 +37,16 @@ export default class Signup extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         if(this.state.password === this.state.passwordConfirmation) {
-            this.signup();
+            this.signupService.signup(
+                this.state.profile,
+                this.state.username,
+                this.state.password,
+                this.signupSuccess.bind(this),
+                this.signupError.bind(this)
+            );
         } else {
             console.log("password e conferma password sono diversi");
         }
-    }
-
-    signup(e) {
-        this.signupService.signup(
-            this.state.profile,
-            this.state.username,
-            this.state.password,
-            this.signupSuccess.bind(this),
-            this.signupError.bind(this)
-        )
     }
 
     signupSuccess(data) {

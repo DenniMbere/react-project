@@ -8,8 +8,8 @@ export default class ProfileService {
             profile: profile,
             username: username,
             password: password
-            }).then(function (result) {
-            if(result.data.responseCode === 0) {
+        }).then(function (result) {
+            if (result.data.responseCode === 0) {
                 onSuccess(result.data);
             } else {
                 onError(result.data);
@@ -19,16 +19,20 @@ export default class ProfileService {
         });
     }
 
-    login(username, password) {
+    login(data, onSuccess, onError) {
         axios.get("http://localhost:8080/api/cli/profiles/login", {
             auth: {
-                username: username,
-                password: password
+                username: data.username,
+                password: data.password
             },
         }).then(function (result) {
-            console.log(result.data);
+            if (result.data.responseCode === 0) {
+                onSuccess(result.data);
+            } else {
+                onError(result.data);
+            }
         }, function (error) {
-            console.log(error);
+            onError(error);
         });
     }
 }

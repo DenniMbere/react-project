@@ -1,30 +1,31 @@
 import React from "react";
 import "../../../src/css/home.css"
+import {Redirect} from 'react-router-dom'
 
 export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            isLoaded: false
+            redirect: false
         };
     }
 
-    /*
-    componentDidMount() {
+    componentWillMount() {
 
-        fetch('http://localhost:8080/api/cli/stores')
-            .then(res => res.json())
-            .then(json => {
-               this.setState({
-                   isLoaded: true,
-                   items: json
-               })
-            });
+        if (sessionStorage.getItem("user")) {
+            //do something
+        } else {
+            this.setState({redirect: true});
+        }
     }
-    */
+
     render() {
+
+        if (this.state.redirect) {
+            return <Redirect to='/login'/>
+        }
+
         return (
             <div>
 
