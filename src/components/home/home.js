@@ -13,6 +13,7 @@ export default class Home extends React.Component {
 
     componentWillMount() {
 
+        console.log(document.cookie);
         if (sessionStorage.getItem("user")) {
             //do something
         } else {
@@ -31,7 +32,7 @@ export default class Home extends React.Component {
 
                 HOME
 
-            </div>
+                </div>
         );
     }
 }

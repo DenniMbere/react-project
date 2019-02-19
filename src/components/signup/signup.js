@@ -23,7 +23,7 @@ export default class Signup extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onCheck = this.onCheck.bind(this);
-        this.signupService = new ProfileService();
+        this.profileService = new ProfileService();
     }
 
     onChange(e) {
@@ -37,7 +37,7 @@ export default class Signup extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         if(this.state.password === this.state.passwordConfirmation) {
-            this.signupService.signup(
+            this.profileService.signup(
                 this.state.profile,
                 this.state.username,
                 this.state.password,
@@ -45,7 +45,7 @@ export default class Signup extends React.Component {
                 this.signupError.bind(this)
             );
         } else {
-            console.log("password e conferma password sono diversi");
+            console.error("password e conferma password sono diversi");
         }
     }
 
@@ -166,7 +166,8 @@ export default class Signup extends React.Component {
                                             name="accept1"
                                             className="form-control"
                                             onChange={this.onCheck}
-                                            required
+                                            disabled
+                                            checked
                                         />
                                     </div>
                                 </div>
@@ -189,7 +190,8 @@ export default class Signup extends React.Component {
                                             name="accept2"
                                             className="form-control"
                                             onChange={this.onCheck}
-                                            required
+                                            disabled
+                                            checked
                                         />
                                     </div>
                                 </div>

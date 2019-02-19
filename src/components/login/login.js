@@ -13,7 +13,7 @@ export default class Login extends React.Component {
         };
 
         this.onChange = this.onChange.bind(this);
-        this.signupService = new ProfileService();
+        this.profileService = new ProfileService();
     }
 
     onChange(e) {
@@ -21,7 +21,7 @@ export default class Login extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
-        this.signupService.login(
+        this.profileService.login(
             this.state,
             this.onSuccess.bind(this),
             this.onError.bind(this)
@@ -30,13 +30,22 @@ export default class Login extends React.Component {
 
     onSuccess(data) {
         if(data) {
-            sessionStorage.setItem('user', JSON.stringify(data.data));
+            let profile = {
+                firstName: data.data.firstName,
+                lastName: data.data.lastName,
+                ssnCode: data.data.ssnCode,
+                mobilePhone: data.data.mobilePhone,
+                principalCard: data.data.principalCard,
+                accept3: data.data.accept3,
+                accept4: data.data.accept4,
+            }
+            sessionStorage.setItem('user', JSON.stringify(profile));
             this.setState({redirect: true});
         }
     }
 
     onError(data) {
-        console.log(data);
+        console.log('errore');
     }
 
 
