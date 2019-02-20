@@ -11,8 +11,8 @@ export default class Header extends React.Component {
     }
 
     navbarContent() {
-        if (sessionStorage.getItem("user")) {
-            let user = JSON.parse(sessionStorage.getItem("user"));
+        if (localStorage.getItem("user")) {
+            let user = JSON.parse(localStorage.getItem("user"));
             return (
                 <div className="navbar-nav">
                     <p className="nav-item">Benvenuto
@@ -33,7 +33,7 @@ export default class Header extends React.Component {
 
     logout() {
         document.cookie = 'JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        sessionStorage.clear();
+        localStorage.clear();
     }
 
     render() {

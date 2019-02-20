@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     componentWillMount() {
 
         console.log(document.cookie);
-        if (sessionStorage.getItem("user")) {
+        if (localStorage.getItem("user")) {
             //do something
         } else {
             this.setState({redirect: true});
@@ -29,10 +29,8 @@ export default class Home extends React.Component {
 
         return (
             <div>
-
                 HOME
-
-                </div>
+            </div>
         );
     }
 }

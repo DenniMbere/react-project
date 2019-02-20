@@ -1,0 +1,166 @@
+import React from "react";
+import "../../../src/css/home.css"
+import {Redirect} from 'react-router-dom'
+
+export default class CreateList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            storeId: "",
+            storeName: "",
+            deliveryMode: "",
+            addressId: null,
+            redirect: false,
+            stores: [],
+            isLoaded: false
+        };
+        this.onChange = this.onChange.bind(this);
+        this.onCheck = this.onCheck.bind(this);
+        this.selectStore = this.selectStore.bind(this);
+    }
+
+    componentDidMount() {
+        if (localStorage.getItem("user")) {
+            fetch('http://localhost:8080/api/cli/stores')
+                .then(res => res.json())
+                .then(json => {
+                    this.setState({
+                        stores: json,
+                        isLoaded: true
+                    })
+                });
+        } else {
+            this.setState({redirect: true});
+        }
+    }
+
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
+    onCheck(e) {
+        this.setState({[e.target.name]: e.target.checked});
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        console.log(this.state);
+    }
+
+    selectStore(store) {
+        this.setState({
+            storeId: store.id,
+            storeName: store.name,
+        });
+    }
+
+    render() {
+
+        if (this.state.redirect) {
+            return <Redirect to='/login'/>
+        }
+
+        let {isLoaded, stores, storeName} = this.state;
+
+        if (!isLoaded) {
+            return <div>Loading...</div>
+        } else {
+
+            return (
+                <div>
+                    <form onSubmit={this.onSubmit.bind(this)}>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-4 mr-auto ml-auto">
+                                    <br/>
+                                    <h3 className='text-center'>Crea lista</h3>
+                                    <br/>
+                                    <h6>Imposta il nome della lista</h6>
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            className="form-control"
+                                            value={this.state.title}
+                                            onChange={this.onChange}
+                                            autoComplete="true"
+                                        />
+                                    </div>
+                                    <br/>
+                                    <h6>Modalità di consegna</h6>
+                                    <div className="form-check">
+                                        <input
+                                            type="checkbox"
+                                            name="deliveryMode"
+                                            className="form-check-input"
+                                            value="IN_STORE"
+                                            onChange={this.onChange}
+                                            required/>
+                                        <label className="form-check-label">Ritiro in negozio</label>
+                                    </div>
+                                    <br/>
+                                    <br/>
+
+                                    <h6>Punto Vendita selezionato:{storeName}</h6>
+                                    <button type="button" className="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal">Cambia punto vendita
+                                    </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div className="row">
+                                <div className="col-2 mr-auto ml-auto">
+                                    <div className="form-group">
+                                        <button className="btn btn-primary btn-block bnt-lg">Crea lista</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Seleziona un punto vendita</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="container">
+                                        {stores.data.map(store => (
+                                        <div className="row" key={store.id}>
+                                            <div className="col-sm-4">
+                                                <a href="#" className="color-inherit" data-dismiss="modal" onClick={() => this.selectStore(store)}>
+                                                    <img src={store.logoImageThumbnailUrl} className="img-responsive" />
+                                                </a>
+                                            </div>
+                                            <div className="col-sm-8">
+                                                <a href="#" className="color-inherit" data-dismiss="modal" onClick={() => this.selectStore(store)}>
+                                                    <h5>{store.name}</h5>
+                                                    <p>{store.address.address}<br/>
+                                                        {store.address.zip} - {store.address.city} {store.address.county}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Chiudi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    }
+}
+

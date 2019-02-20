@@ -4,7 +4,7 @@ export default class HomeMenu extends React.Component{
 
 
     showSection() {
-        if(sessionStorage.getItem('user')){
+        if(localStorage.getItem('user')){
             return(
                 <div>
                     <a href='/ecommerce'>
@@ -45,7 +45,6 @@ export default class HomeMenu extends React.Component{
     render(){
 
         let showSection = this.showSection();
-
         return(
             <div>
                 <div>

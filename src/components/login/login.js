@@ -39,7 +39,7 @@ export default class Login extends React.Component {
                 accept3: data.data.accept3,
                 accept4: data.data.accept4,
             }
-            sessionStorage.setItem('user', JSON.stringify(profile));
+            localStorage.setItem('user', JSON.stringify(profile));
             this.setState({redirect: true});
         }
     }
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
             return <Redirect to='/'/>
         }
 
-        if(sessionStorage.getItem("user")) {
+        if(localStorage.getItem("user")) {
             return <Redirect to='/'/>
         }
 

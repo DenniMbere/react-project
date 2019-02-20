@@ -6,7 +6,7 @@ export default class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile: JSON.parse(sessionStorage.getItem("user"))
+            profile: JSON.parse(localStorage.getItem("user"))
         };
         this.onChange = this.onChange.bind(this);
         this.onCheck = this.onCheck.bind(this);
