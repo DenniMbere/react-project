@@ -11,7 +11,7 @@ export default class Home extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         console.log(document.cookie);
         if (localStorage.getItem("user")) {

@@ -24,7 +24,17 @@ export default class Profile extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         console.log(this.state.profile);
-        this.profileService.update(this.state.profile);
+        this.profileService.update(this.state.profile)
+            .then((response) => response.json())
+            .then((responseData) => {
+                if (responseData.responseCode === 0) {
+                    console.log("update succesful");
+                } else {
+                    console.log("error updating profile");
+                }
+            }).catch((error) => {
+            console.log("error updating profile");
+        })
     }
 
     render() {

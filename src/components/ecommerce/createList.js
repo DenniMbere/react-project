@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../src/css/home.css"
 import {Redirect} from 'react-router-dom'
+import EcommerceService from "../service/ecommerceService";
 
 export default class CreateList extends React.Component {
 
@@ -11,14 +12,15 @@ export default class CreateList extends React.Component {
             storeId: "",
             storeName: "",
             deliveryMode: "",
-            addressId: null,
+            addressId: "",
             redirect: false,
             stores: [],
-            isLoaded: false
+            isLoaded: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onCheck = this.onCheck.bind(this);
         this.selectStore = this.selectStore.bind(this);
+        this.ecommerceService = new EcommerceService();
     }
 
     componentDidMount() {
@@ -28,7 +30,9 @@ export default class CreateList extends React.Component {
                 .then(json => {
                     this.setState({
                         stores: json,
-                        isLoaded: true
+                        isLoaded: true,
+                        storeId: json.data[0].id,
+                        storeName: json.data[0].name,
                     })
                 });
         } else {
@@ -46,7 +50,18 @@ export default class CreateList extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
+        this.ecommerceService.open(this.state)
+            .then((response) => response.json())
+            .then((responseData) => {
+                if (responseData.responseCode === 0) {
+                    console.log(responseData);
+                    window.location = "/ecommerce";
+                } else {
+                    console.log(responseData);
+                }
+            }).catch((error) => {
+                console.log(error);
+            })
     }
 
     selectStore(store) {
@@ -100,14 +115,17 @@ export default class CreateList extends React.Component {
                                             required/>
                                         <label className="form-check-label">Ritiro in negozio</label>
                                     </div>
-                                    <br/>
-                                    <br/>
-
-                                    <h6>Punto Vendita selezionato:{storeName}</h6>
-                                    <button type="button" className="btn btn-primary" data-toggle="modal"
-                                            data-target="#exampleModal">Cambia punto vendita
-                                    </button>
                                 </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div className="col-8 mr-auto ml-auto">
+                                <h6 className='text-center'>Punto Vendita selezionato: {storeName}</h6>
+                            </div>
+                            <div className="col-4 mr-auto ml-auto">
+                                <button type="button" className="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal">Cambia punto vendita
+                                </button>
                             </div>
                             <br/>
                             <br/>
@@ -134,20 +152,24 @@ export default class CreateList extends React.Component {
                                 <div className="modal-body">
                                     <div className="container">
                                         {stores.data.map(store => (
-                                        <div className="row" key={store.id}>
-                                            <div className="col-sm-4">
-                                                <a href="#" className="color-inherit" data-dismiss="modal" onClick={() => this.selectStore(store)}>
-                                                    <img src={store.logoImageThumbnailUrl} className="img-responsive" />
-                                                </a>
+                                            <div className="row" key={store.id}>
+                                                <div className="col-sm-4">
+                                                    <a href="#" className="color-inherit" data-dismiss="modal"
+                                                       onClick={() => this.selectStore(store)}>
+                                                        <img src={store.logoImageThumbnailUrl}
+                                                             className="img-responsive"/>
+                                                    </a>
+                                                </div>
+                                                <div className="col-sm-8">
+                                                    <a href="#" className="color-inherit" data-dismiss="modal"
+                                                       onClick={() => this.selectStore(store)}>
+                                                        <h5>{store.name}</h5>
+                                                        <p>{store.address.address}<br/>
+                                                            {store.address.zip}
+                                                            - {store.address.city} {store.address.county}</p>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div className="col-sm-8">
-                                                <a href="#" className="color-inherit" data-dismiss="modal" onClick={() => this.selectStore(store)}>
-                                                    <h5>{store.name}</h5>
-                                                    <p>{store.address.address}<br/>
-                                                        {store.address.zip} - {store.address.city} {store.address.county}</p>
-                                                </a>
-                                            </div>
-                                        </div>
                                         ))}
                                     </div>
                                 </div>

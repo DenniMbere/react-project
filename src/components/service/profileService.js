@@ -39,24 +39,17 @@ export default class ProfileService {
     }
 
     update(data) {
-        fetch('http://localhost:8080/api/cli/profiles/update', {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:8080"
-            },
-            mode: "cors",
-            credentials: 'same-origin',
-            body: data
-        }).then((response) => response.json())
-            .then((responseData) => {
-                if (responseData.responseCode === 0) {
-                    console.log("update succesful");
-                } else {
-                    console.log("error updating profile");
-                }
-            }).catch((error) => {
-            console.log("error updating profile");
-        });
+        return(
+            fetch('http://localhost:8080/api/cli/profiles/update', {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:8080"
+                },
+                mode: "cors",
+                credentials: 'include',
+                body: JSON.stringify(data)
+            })
+        );
     }
 }

@@ -8,6 +8,7 @@ import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
 import Profile from "./components/profile/profile";
 import CreateList from "./components/ecommerce/createList";
+import CurrentList from "./components/ecommerce/currentList";
 
 class App extends Component {
     render() {
@@ -20,7 +21,8 @@ class App extends Component {
                         <Route exact path='/signup' component={Signup}/>
                         <Route exact path='/login' component={Login}/>
                         <Route exact path='/profile' component={Profile}/>
-                        <Route exact path='/ecommerce' component={CreateList}/>
+                        <Route exact path='/ecommerce/' component={CurrentList}/>
+                        <Route exact path='/ecommerce/create' component={CreateList}/>
                     </Switch>
                 </MainTemplate>
             </BrowserRouter>

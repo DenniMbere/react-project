@@ -10,8 +10,8 @@ export default class Signup extends React.Component {
             password: '',
             passwordConfirmation: '',
             profile: {
-                accept1: null,
-                accept2: null,
+                accept1: true,
+                accept2: true,
                 accept3: null,
                 accept4: null,
                 email: ""

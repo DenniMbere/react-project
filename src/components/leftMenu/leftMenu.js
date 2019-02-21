@@ -14,6 +14,7 @@ export default class LeftMenu extends React.Component{
                 <Route exact path='/signup' component={HomeMenu}/>
                 <Route exact path='/profile' component={GoBackMenu}/>
                 <Route exact path='/ecommerce' component={HomeMenu}/>
+                <Route exact path='/ecommerce/create' component={GoBackMenu}/>
                 <Route exact path='/orders' component={GoBackMenu}/>
             </Switch>
         );
