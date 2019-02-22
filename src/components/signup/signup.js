@@ -1,5 +1,6 @@
 import React from "react";
 import ProfileService from "../service/profileService";
+import HomeMenu from "../leftMenu/homeMenu/homeMenu";
 
 export default class Signup extends React.Component {
 
@@ -36,7 +37,7 @@ export default class Signup extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if(this.state.password === this.state.passwordConfirmation) {
+        if (this.state.password === this.state.passwordConfirmation) {
             this.profileService.signup(
                 this.state.profile,
                 this.state.username,
@@ -101,8 +102,13 @@ export default class Signup extends React.Component {
         return (
             <div>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <div className="container">
-                        <div className="row">
+                    <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
+                        <div className="col-md-3 col-sm-3 nopadding left-side-menu">
+                            <div>
+                                <HomeMenu/>
+                            </div>
+                        </div>
+                        <div className="col-md-9 col-sm-9 nopadding">
                             <div className="col-6 mr-auto ml-auto">
                                 <br/>
                                 <h1>Registrati</h1>
@@ -145,104 +151,109 @@ export default class Signup extends React.Component {
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="container">
-                            <br/>
-                            <div className="form-group">
-                                <label>
-                                    <strong>Condizioni di servizio</strong>
-                                </label>
-                                <div className="row">
-                                    <div className="col-sm-11">
-                                        <label>
-                                            Dichiaro di aver letto e di accettare integralmente i termini e le condizioni di
-                                            servizio indicati nell'informativa per la registrazione al servizio SmartBip.
-                                            In mancanza del mio consenso i servizi non potranno essere erogati.
-                                        </label>
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <input
-                                            type="checkbox"
-                                            name="accept1"
-                                            className="form-control"
-                                            onChange={this.onCheck}
-                                            disabled
-                                            checked
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label>
-                                    <strong>Privacy</strong>
-                                </label>
-                                <div className="row">
-                                    <div className="col-sm-11">
-                                        <label>
-                                            Dichiaro di aver letto la Privacy Policy indicata nell'informativa per la registrazione al servizio
-                                            SmartBip e di esprimere il mio consenso al trattamento dei miei dati per le finalità in essa indicate.<br/>
-                                            In mancanza del mio consenso, i servizi non potranno essere erogati.
-                                        </label>
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <input
-                                            type="checkbox"
-                                            name="accept2"
-                                            className="form-control"
-                                            onChange={this.onCheck}
-                                            disabled
-                                            checked
-                                        />
+                            <div className="container">
+                                <br/>
+                                <div className="form-group">
+                                    <label>
+                                        <strong>Condizioni di servizio</strong>
+                                    </label>
+                                    <div className="row">
+                                        <div className="col-sm-11">
+                                            <label>
+                                                Dichiaro di aver letto e di accettare integralmente i termini e le
+                                                condizioni di
+                                                servizio indicati nell'informativa per la registrazione al servizio
+                                                SmartBip.
+                                                In mancanza del mio consenso i servizi non potranno essere erogati.
+                                            </label>
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <input
+                                                type="checkbox"
+                                                name="accept1"
+                                                className="form-control"
+                                                onChange={this.onCheck}
+                                                disabled
+                                                checked
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="row">
-                                    <div className="col-sm-11">
-                                        <label>
-                                            Letta l'informativa, esprimo inoltre il mio consenso a che i dati da me forniti siano utilizzati per l'invio
-                                            di informazioni ed offerte commerciali anche di terzi. Il consenso è facoltativo.
-                                        </label>
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <input
-                                            type="checkbox"
-                                            name="accept3"
-                                            className="form-control"
-                                            onChange={this.onCheck}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="row">
-                                    <div className="col-sm-11">
-                                        <label>
-                                            Letta l'informativa, esprimo inoltre il mio consenso per la comunicazione a terzi dei miei dati per fini promozionali.<br/>
-                                            Il consenso è facoltativo.
-                                        </label>
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <input
-                                            type="checkbox"
-                                            name="accept4"
-                                            className="form-control"
-                                            onChange={this.onCheck}
-                                        />
+                                <div className="form-group">
+                                    <label>
+                                        <strong>Privacy</strong>
+                                    </label>
+                                    <div className="row">
+                                        <div className="col-sm-11">
+                                            <label>
+                                                Dichiaro di aver letto la Privacy Policy indicata nell'informativa per
+                                                la registrazione al servizio
+                                                SmartBip e di esprimere il mio consenso al trattamento dei miei dati per
+                                                le finalità in essa indicate.<br/>
+                                                In mancanza del mio consenso, i servizi non potranno essere erogati.
+                                            </label>
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <input
+                                                type="checkbox"
+                                                name="accept2"
+                                                className="form-control"
+                                                onChange={this.onCheck}
+                                                disabled
+                                                checked
+                                            />
+                                        </div>
                                     </div>
                                 </div>
+                                <div className="form-group">
+                                    <div className="row">
+                                        <div className="col-sm-11">
+                                            <label>
+                                                Letta l'informativa, esprimo inoltre il mio consenso a che i dati da me
+                                                forniti siano utilizzati per l'invio
+                                                di informazioni ed offerte commerciali anche di terzi. Il consenso è
+                                                facoltativo.
+                                            </label>
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <input
+                                                type="checkbox"
+                                                name="accept3"
+                                                className="form-control"
+                                                onChange={this.onCheck}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <div className="row">
+                                        <div className="col-sm-11">
+                                            <label>
+                                                Letta l'informativa, esprimo inoltre il mio consenso per la
+                                                comunicazione a terzi dei miei dati per fini promozionali.<br/>
+                                                Il consenso è facoltativo.
+                                            </label>
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <input
+                                                type="checkbox"
+                                                name="accept4"
+                                                className="form-control"
+                                                onChange={this.onCheck}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div className="form-group">
+                                    <button className="btn btn-primary btn-block bnt-lg">Invia</button>
+                                </div>
+                                {successMessage}
+                                {errorMessage}
                             </div>
-                            <br/>
-                            <div className="form-group">
-                                <button className="btn btn-primary btn-block bnt-lg">Invia</button>
-                            </div>
-                            {successMessage}
-                            {errorMessage}
                         </div>
                     </div>
-
                 </form>
-
             </div>
         );
     }

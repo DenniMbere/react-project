@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileService from "../service/profileService";
 import {Redirect} from 'react-router-dom';
+import HomeMenu from "../leftMenu/homeMenu/homeMenu";
 
 export default class Login extends React.Component {
 
@@ -19,6 +20,7 @@ export default class Login extends React.Component {
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
+
     onSubmit(e) {
         e.preventDefault();
         this.profileService.login(
@@ -29,7 +31,7 @@ export default class Login extends React.Component {
     }
 
     onSuccess(data) {
-        if(data) {
+        if (data) {
             let profile = {
                 firstName: data.data.firstName,
                 lastName: data.data.lastName,
@@ -51,19 +53,24 @@ export default class Login extends React.Component {
 
     render() {
 
-        if(this.state.redirect) {
+        if (this.state.redirect) {
             return <Redirect to='/'/>
         }
 
-        if(localStorage.getItem("user")) {
+        if (localStorage.getItem("user")) {
             return <Redirect to='/'/>
         }
 
         return (
             <div>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <div className="container">
-                        <div className="row">
+                    <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
+                        <div className="col-md-3 col-sm-3 nopadding left-side-menu">
+                            <div>
+                                <HomeMenu/>
+                            </div>
+                        </div>
+                        <div className="col-md-9 col-sm-9 nopadding">
                             <div className="col-6 mr-auto ml-auto">
                                 <br/>
                                 <h1>Accedi</h1>
@@ -92,13 +99,9 @@ export default class Login extends React.Component {
                                         required
                                     />
                                 </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <div className="row">
-                            <div className="col-6 mr-auto ml-auto">
+                                <br/>
                                 <div className="form-group">
-                                    <button className="btn btn-primary btn-block bnt-lg">Accedi</button>
+                                    <button className="btn btn-primary btn-block bnt-lg">Invia</button>
                                 </div>
                             </div>
                         </div>

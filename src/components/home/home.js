@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../src/css/home.css"
 import {Redirect} from 'react-router-dom'
+import HomeMenu from "../leftMenu/homeMenu/homeMenu";
 
 export default class Home extends React.Component {
 
@@ -29,7 +30,16 @@ export default class Home extends React.Component {
 
         return (
             <div>
-                HOME
+                <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
+                    <div className="col-md-3 col-sm-3 nopadding left-side-menu">
+                        <div>
+                            <HomeMenu/>
+                        </div>
+                    </div>
+                    <div className="col-md-9 col-sm-9 nopadding">
+                        HOME
+                    </div>
+                </div>
             </div>
         );
     }

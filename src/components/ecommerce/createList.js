@@ -2,6 +2,7 @@ import React from "react";
 import "../../../src/css/home.css"
 import {Redirect} from 'react-router-dom'
 import EcommerceService from "../service/ecommerceService";
+import BackMenu from "../leftMenu/backMenu/backMenu";
 
 export default class CreateList extends React.Component {
 
@@ -60,8 +61,8 @@ export default class CreateList extends React.Component {
                     console.log(responseData);
                 }
             }).catch((error) => {
-                console.log(error);
-            })
+            console.log(error);
+        })
     }
 
     selectStore(store) {
@@ -86,53 +87,60 @@ export default class CreateList extends React.Component {
             return (
                 <div>
                     <form onSubmit={this.onSubmit.bind(this)}>
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-4 mr-auto ml-auto">
-                                    <br/>
-                                    <h3 className='text-center'>Crea lista</h3>
-                                    <br/>
-                                    <h6>Imposta il nome della lista</h6>
-                                    <div className="form-group">
-                                        <input
-                                            type="text"
-                                            name="title"
-                                            className="form-control"
-                                            value={this.state.title}
-                                            onChange={this.onChange}
-                                            autoComplete="true"
-                                        />
-                                    </div>
-                                    <br/>
-                                    <h6>Modalità di consegna</h6>
-                                    <div className="form-check">
-                                        <input
-                                            type="checkbox"
-                                            name="deliveryMode"
-                                            className="form-check-input"
-                                            value="IN_STORE"
-                                            onChange={this.onChange}
-                                            required/>
-                                        <label className="form-check-label">Ritiro in negozio</label>
-                                    </div>
+                        <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
+                            <div className="col-md-3 col-sm-3 nopadding left-side-menu">
+                                <div>
+                                    <BackMenu/>
                                 </div>
                             </div>
-                            <br/>
-                            <br/>
-                            <div className="col-8 mr-auto ml-auto">
-                                <h6 className='text-center'>Punto Vendita selezionato: {storeName}</h6>
-                            </div>
-                            <div className="col-4 mr-auto ml-auto">
-                                <button type="button" className="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModal">Cambia punto vendita
-                                </button>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div className="row">
-                                <div className="col-2 mr-auto ml-auto">
-                                    <div className="form-group">
-                                        <button className="btn btn-primary btn-block bnt-lg">Crea lista</button>
+                            <div className="col-md-9 col-sm-9 nopadding">
+                                <div className="row">
+                                    <div className="col-4 mr-auto ml-auto">
+                                        <br/>
+                                        <h3 className='text-center'>Crea lista</h3>
+                                        <br/>
+                                        <h6>Imposta il nome della lista</h6>
+                                        <div className="form-group">
+                                            <input
+                                                type="text"
+                                                name="title"
+                                                className="form-control"
+                                                value={this.state.title}
+                                                onChange={this.onChange}
+                                                autoComplete="true"
+                                            />
+                                        </div>
+                                        <br/>
+                                        <h6>Modalità di consegna</h6>
+                                        <div className="form-check">
+                                            <input
+                                                type="checkbox"
+                                                name="deliveryMode"
+                                                className="form-check-input"
+                                                value="IN_STORE"
+                                                onChange={this.onChange}
+                                                required/>
+                                            <label className="form-check-label">Ritiro in negozio</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div className="col-8 mr-auto ml-auto">
+                                    <h6 className='text-center'>Punto Vendita selezionato: {storeName}</h6>
+                                </div>
+                                <div className="col-4 mr-auto ml-auto">
+                                    <button type="button" className="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal">Cambia punto vendita
+                                    </button>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div className="row">
+                                    <div className="col-2 mr-auto ml-auto">
+                                        <div className="form-group">
+                                            <button className="btn btn-primary btn-block bnt-lg">Crea lista</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

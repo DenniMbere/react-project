@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class GoBackMenu extends React.Component{
+export default class BackMenu extends React.Component{
 
     render(){
         return(
