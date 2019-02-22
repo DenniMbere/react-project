@@ -37,4 +37,23 @@ export default class EcommerceService {
         );
     }
 
+    review(cartId, refresh) {
+        return (
+            fetch('http://localhost:8080/api/cli/ecommerce/cart/review', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:8080"
+                    },
+                    mode: "cors",
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        cartId: cartId,
+                        refresh: refresh
+                    })
+                }
+            )
+        );
+    }
+
 }

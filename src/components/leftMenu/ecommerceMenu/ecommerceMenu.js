@@ -23,6 +23,7 @@ export default class EcommerceMenu extends React.Component {
                         </div>
                     ))}
                 </div>
+                <a href="/ecommerce/create" className="btn btn-primary bnt-lg">Crea nuova lista</a>
             </div>
         );
     }

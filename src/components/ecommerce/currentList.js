@@ -13,6 +13,8 @@ export default class CurrentList extends React.Component {
             createRedirect: false,
             lists: [],
             isLoaded: false,
+            cartId: "",
+            currentList: ""
         };
         this.onChange = this.onChange.bind(this);
         this.ecommerceService = new EcommerceService();
@@ -26,9 +28,21 @@ export default class CurrentList extends React.Component {
                     this.setState({
                         lists: json.data,
                         isLoaded: true,
-                        createRedirect: (json.data.length === 0)
-
-                    })
+                        createRedirect: (json.data.length === 0),
+                        cartId: json.data[0].id
+                    });
+                    if (this.state.cartId !== "") {
+                        this.ecommerceService.review(this.state.cartId, true)
+                            .then((response) => response.json())
+                            .then((responseData) => {
+                                console.log(responseData)
+                                this.setState({
+                                    currentList: responseData.data.cart
+                                })
+                            }).catch((error) => {
+                            console.log(error);
+                        })
+                    }
                 });
         } else {
             this.setState({loginRedirect: true});
@@ -68,7 +82,8 @@ export default class CurrentList extends React.Component {
             return <Redirect to='/ecommerce/create'/>
         }
 
-        let {lists, createRedirect} = this.state;
+        let {lists, currentList} = this.state;
+        console.log(currentList);
 
         return (
             <div>
@@ -78,8 +93,12 @@ export default class CurrentList extends React.Component {
                             <EcommerceMenu lists={lists}/>
                         </div>
                     </div>
+
+
                     <div className="col-md-9 col-sm-9 nopadding">
-                        CURRENT LIST
+
+                        <span>{this.state.currentList.title}</span>
+
                     </div>
                 </div>
             </div>

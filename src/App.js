@@ -21,7 +21,7 @@ class App extends Component {
                         <Route exact path='/signup' component={Signup}/>
                         <Route exact path='/login' component={Login}/>
                         <Route exact path='/profile' component={Profile}/>
-                        <Route exact path='/ecommerce/' component={CurrentList}/>
+                        <Route exact path='/ecommerce' component={CurrentList}/>
                         <Route exact path='/ecommerce/create' component={CreateList}/>
                     </Switch>
                 </MainTemplate>
