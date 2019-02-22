@@ -2,6 +2,7 @@ import React from "react";
 import "../../../src/css/home.css"
 import {Redirect} from 'react-router-dom'
 import EcommerceService from "../service/ecommerceService";
+import EcommerceMenu from "../leftMenu/ecommerceMenu/ecommerceMenu";
 
 export default class CurrentList extends React.Component {
 
@@ -69,11 +70,18 @@ export default class CurrentList extends React.Component {
 
         let {lists, createRedirect} = this.state;
 
-        console.log(lists)
-        console.log(createRedirect)
         return (
             <div>
-                CURRENT LIST
+                <div className="row" style={{backgroundColor: "white", minHeight: 1040}}>
+                    <div className="col-md-3 col-sm-3 nopadding left-side-menu">
+                        <div>
+                            <EcommerceMenu lists={lists}/>
+                        </div>
+                    </div>
+                    <div className="col-md-9 col-sm-9 nopadding">
+                        CURRENT LIST
+                    </div>
+                </div>
             </div>
         )
     }
